@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather Data</title>
+</head>
+
+<body>
+  <!-- Retrieved data will be dumped here -->
+  <div class="city"></div>
+  <div class="wind"></div>
+  <div class="humidity"></div>
+  <div class="temp"></div>
+  <br><hr>
+  <div id="tcity"></div>
+  <div id="twind"></div>
+  <div id="thumidity"></div>
+  <div id="ttemp"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Things to accomplish:
+    // Get an API Key from OpenWeatherMap API
+    // Create an AJAX call to retrieve data Log the data in console
+    // Log the data in HTML
+    // Scream Ushindi (victory in Swahili)! at the top of your lungs
+
+    var APIKey = "166a433c57516f51dfab1f7edaed8413";
+    var city = "Istanbul";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=166a433c57516f51dfab1f7edaed8413&units=imperial";
+
+    $.ajax({
+      url: queryURL,
+      method: "Get"
+    }).then(function(response){
+      console.log(response);
+      $(".city").html("<h1>Location: " + response.name + "</h1>");
+      $(".wind").html("<h2>Wind: " + response.wind.speed + "</h2>");
+      $(".humidity").html("<h2>Humidity: " + response.main.humidity + "</h2>");
+      $(".temp").html("<h2>Temperature: " + response.main.temp + "</h2>");
+    });
+
+    var city = "Tampa,Florida"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=166a433c57516f51dfab1f7edaed8413&units=imperial";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response){
+      console.log(response);
+      $("#tcity").html("<h1>Location: " + response.name + ", Florida</h1>");
+      $("#twind").html("<h2>Wind: " + response.wind.speed + "</h2>");
+      $("#thumidity").html("<h2>Humidity: " + response.main.humidity + "</h2>");
+      $("#ttemp").html("<h2>Temperature: " + response.main.temp + "</h2>");
+    });
+
+    
+  </script>
+
+</body>
+
+</html>
